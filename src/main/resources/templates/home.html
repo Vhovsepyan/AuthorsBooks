@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}"
+          href="../../css/styles.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th style="text-align: center"> Title</th>
+            <th style="text-align: center"> Author</th>
+            <th style="text-align: center"> Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${books.empty}">
+            <td colspan="2"> No Books Available</td>
+        </tr>
+        <tr th:each="book : ${books}">
+            <td style="text-align: center"><span class="pagination-centered" th:text="${book.title}"> Title </span></td>
+            <td style="text-align: center"><span th:text="${book.author}"> Author </span></td>
+            <td style="text-align: center">
+                <form style="height: 10px" action="#" th:action="@{actions}" th:object="${book}" method="post">
+                    <button type="submit" class="btn btn-info" th:name="edit" th:value="${book.id}">
+                        <i class="fa fa-edit fa-1.5x"></i>
+                    </button>
+                    <button type="submit" class="btn btn-danger" th:name="delete" th:value="${book.id}">
+                        <i class="fa fa-trash fa-1.5x"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="btn btn-success pull-right">
+        <a th:href="@{/books/form}">Create new book</a>
+    </div>
+
+</div>
+</body>
+</html>
