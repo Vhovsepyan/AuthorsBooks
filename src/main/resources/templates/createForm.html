@@ -3,14 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>CreateForm</title>
+    <!--  jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 </head>
 <body>
+<script>
+    $('#date').datepicker({
+        format: 'dd-M-yyyy'
+    });
+</script>
 <div class="container">
     <h1>New Book </h1>
-    <form action="#" th:action="@{(all)}" th:object="${book}" method="post">
+    <form action="#" th:action="@{(all)}" method="post">
         <table>
-            <p>Title: <input type="text" th:field="*{title}"/></p>
-            <p>Author: <input type="text" th:field="*{author}"/></p>
+            <p>Book title: <input type="text" th:field="*{book.title}"/></p>
+            <p>Release date: <input type="date" class="form-control" id="date" name="date" th:field ="*{book.releaseDate}"/></p>
+            <p>Author name: <input type="text" th:field="*{author.name}"/></p>
+            <p>Author surname: <input type="text" th:field="*{author.surname}"/></p>
         </table>
         <p><input type="submit" value="Submit"/> </p>
     </form>

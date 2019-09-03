@@ -23,7 +23,8 @@
         </tr>
         <tr th:each="book : ${books}">
             <td style="text-align: center"><span class="pagination-centered" th:text="${book.title}"> Title </span></td>
-            <td style="text-align: center"><span th:text="${book.author}"> Author </span></td>
+            <td style="text-align: center"><span class="pagination-centered" th:text="${book.authorsCount}"> Authors </span></td>
+
             <td style="text-align: center">
                 <form style="height: 10px" action="#" th:action="@{actions}" th:object="${book}" method="post">
                     <button type="submit" class="btn btn-info" th:name="edit" th:value="${book.id}">
